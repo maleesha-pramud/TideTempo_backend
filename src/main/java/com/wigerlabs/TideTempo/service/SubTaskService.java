@@ -113,16 +113,17 @@ public class SubTaskService {
                         .list();
 
                 for (SubTask subTask : subTasks) {
-                    SubTaskDTO subTaskDTO = new SubTaskDTO(
-                            subTask.getId(),
-                            subTask.getName(),
-                            subTask.getDescription(),
-                            subTask.getTimeSpent(),
-                            subTask.getTask().getId(),
-                            subTask.getPriority().getId(),
-                            subTask.getStatus().getId()
-                    );
-                    dataArray.add(AppUtil.GSON.toJsonTree(subTaskDTO));
+                    JsonObject subTaskObject = new JsonObject();
+                    subTaskObject.addProperty("id", subTask.getId());
+                    subTaskObject.addProperty("name", subTask.getName());
+                    subTaskObject.addProperty("description", subTask.getDescription());
+                    subTaskObject.addProperty("timeSpent", subTask.getTimeSpent());
+                    subTaskObject.addProperty("taskId", subTask.getTask().getId());
+                    subTaskObject.addProperty("priorityId", subTask.getPriority().getId());
+                    subTaskObject.addProperty("priorityName", subTask.getPriority().getValue());
+                    subTaskObject.addProperty("statusId", subTask.getStatus().getId());
+                    subTaskObject.addProperty("statusName", subTask.getStatus().getValue());
+                    dataArray.add(subTaskObject);
                 }
 
                 status = true;
