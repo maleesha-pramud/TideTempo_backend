@@ -55,7 +55,6 @@ public class TaskService {
                             Task newTask = new Task();
                             newTask.setName(taskDTO.getName());
                             newTask.setDescription(taskDTO.getDescription());
-                            newTask.setTimeSpent(taskDTO.getTimeSpent());
                             newTask.setUser(loggedInUser);
                             newTask.setPriority(priority);
                             newTask.setStatus(taskStatus);
@@ -108,7 +107,6 @@ public class TaskService {
                     taskObject.addProperty("id", task.getId());
                     taskObject.addProperty("name", task.getName());
                     taskObject.addProperty("description", task.getDescription());
-                    taskObject.addProperty("timeSpent", task.getTimeSpent());
                     taskObject.addProperty("userId", task.getUser().getId());
                     taskObject.addProperty("priorityId", task.getPriority().getId());
                     taskObject.addProperty("priorityName", task.getPriority().getValue());
@@ -127,7 +125,6 @@ public class TaskService {
                         subTaskObject.addProperty("id", subTask.getId());
                         subTaskObject.addProperty("name", subTask.getName());
                         subTaskObject.addProperty("description", subTask.getDescription());
-                        subTaskObject.addProperty("timeSpent", subTask.getTimeSpent());
                         subTaskObject.addProperty("taskId", subTask.getTask().getId());
                         subTaskObject.addProperty("priorityId", subTask.getPriority().getId());
                         subTaskObject.addProperty("priorityName", subTask.getPriority().getValue());
@@ -178,7 +175,6 @@ public class TaskService {
                         taskObject.addProperty("id", task.getId());
                         taskObject.addProperty("name", task.getName());
                         taskObject.addProperty("description", task.getDescription());
-                        taskObject.addProperty("timeSpent", task.getTimeSpent());
                         taskObject.addProperty("userId", task.getUser().getId());
                         taskObject.addProperty("priorityId", task.getPriority().getId());
                         taskObject.addProperty("priorityName", task.getPriority().getValue());
@@ -197,7 +193,6 @@ public class TaskService {
                             subTaskObject.addProperty("id", subTask.getId());
                             subTaskObject.addProperty("name", subTask.getName());
                             subTaskObject.addProperty("description", subTask.getDescription());
-                            subTaskObject.addProperty("timeSpent", subTask.getTimeSpent());
                             subTaskObject.addProperty("taskId", subTask.getTask().getId());
                             subTaskObject.addProperty("priorityId", subTask.getPriority().getId());
                             subTaskObject.addProperty("priorityName", subTask.getPriority().getValue());
@@ -270,7 +265,6 @@ public class TaskService {
                                 try {
                                     existingTask.setName(taskDTO.getName());
                                     existingTask.setDescription(taskDTO.getDescription());
-                                    existingTask.setTimeSpent(taskDTO.getTimeSpent());
                                     existingTask.setPriority(priority);
                                     existingTask.setStatus(taskStatus);
 

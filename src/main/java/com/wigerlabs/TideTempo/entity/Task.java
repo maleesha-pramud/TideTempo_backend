@@ -14,9 +14,6 @@ public class Task extends BaseEntity {
     @Column(nullable = true, length = 500)
     private String description;
 
-    @Column(name = "time_spent", nullable = false)
-    private int timeSpent = 0;
-
     @JoinColumn(name = "user_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
@@ -32,11 +29,10 @@ public class Task extends BaseEntity {
     public Task() {
     }
 
-    public Task(int id, String name, String description, int timeSpent, User user, Priority priority, Status status) {
+    public Task(int id, String name, String description, User user, Priority priority, Status status) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.timeSpent = timeSpent;
         this.user = user;
         this.priority = priority;
         this.status = status;
@@ -66,13 +62,6 @@ public class Task extends BaseEntity {
         this.description = description;
     }
 
-    public int getTimeSpent() {
-        return timeSpent;
-    }
-
-    public void setTimeSpent(int timeSpent) {
-        this.timeSpent = timeSpent;
-    }
 
     public User getUser() {
         return user;

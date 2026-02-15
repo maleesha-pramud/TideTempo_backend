@@ -63,7 +63,6 @@ public class SubTaskService {
                                 SubTask newSubTask = new SubTask();
                                 newSubTask.setName(subTaskDTO.getName());
                                 newSubTask.setDescription(subTaskDTO.getDescription());
-                                newSubTask.setTimeSpent(subTaskDTO.getTimeSpent());
                                 newSubTask.setTask(task);
                                 newSubTask.setPriority(priority);
                                 newSubTask.setStatus(subTaskStatus);
@@ -117,7 +116,6 @@ public class SubTaskService {
                     subTaskObject.addProperty("id", subTask.getId());
                     subTaskObject.addProperty("name", subTask.getName());
                     subTaskObject.addProperty("description", subTask.getDescription());
-                    subTaskObject.addProperty("timeSpent", subTask.getTimeSpent());
                     subTaskObject.addProperty("taskId", subTask.getTask().getId());
                     subTaskObject.addProperty("priorityId", subTask.getPriority().getId());
                     subTaskObject.addProperty("priorityName", subTask.getPriority().getValue());
@@ -164,7 +162,6 @@ public class SubTaskService {
                                 subTask.getId(),
                                 subTask.getName(),
                                 subTask.getDescription(),
-                                subTask.getTimeSpent(),
                                 subTask.getTask().getId(),
                                 subTask.getPriority().getId(),
                                 subTask.getStatus().getId()
@@ -215,7 +212,6 @@ public class SubTaskService {
                                     subTask.getId(),
                                     subTask.getName(),
                                     subTask.getDescription(),
-                                    subTask.getTimeSpent(),
                                     subTask.getTask().getId(),
                                     subTask.getPriority().getId(),
                                     subTask.getStatus().getId()
@@ -293,7 +289,6 @@ public class SubTaskService {
                                     try {
                                         existingSubTask.setName(subTaskDTO.getName());
                                         existingSubTask.setDescription(subTaskDTO.getDescription());
-                                        existingSubTask.setTimeSpent(subTaskDTO.getTimeSpent());
                                         existingSubTask.setTask(task);
                                         existingSubTask.setPriority(priority);
                                         existingSubTask.setStatus(subTaskStatus);

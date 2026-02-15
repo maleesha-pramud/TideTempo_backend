@@ -6,7 +6,6 @@ public class TaskDTO implements Serializable {
     private int id;
     private String name;
     private String description;
-    private int timeSpent;
     private int userId;
     private int priorityId;
     private int statusId;
@@ -14,11 +13,10 @@ public class TaskDTO implements Serializable {
     public TaskDTO() {
     }
 
-    public TaskDTO(int id, String name, String description, int timeSpent, int userId, int priorityId, int statusId) {
+    public TaskDTO(int id, String name, String description, int userId, int priorityId, int statusId) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.timeSpent = timeSpent;
         this.userId = userId;
         this.priorityId = priorityId;
         this.statusId = statusId;
@@ -48,13 +46,6 @@ public class TaskDTO implements Serializable {
         this.description = description;
     }
 
-    public int getTimeSpent() {
-        return timeSpent;
-    }
-
-    public void setTimeSpent(int timeSpent) {
-        this.timeSpent = timeSpent;
-    }
 
     public int getUserId() {
         return userId;

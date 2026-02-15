@@ -6,7 +6,6 @@ public class SubTaskDTO implements Serializable {
     private int id;
     private String name;
     private String description;
-    private int timeSpent;
     private int taskId;
     private int priorityId;
     private int statusId;
@@ -14,11 +13,10 @@ public class SubTaskDTO implements Serializable {
     public SubTaskDTO() {
     }
 
-    public SubTaskDTO(int id, String name, String description, int timeSpent, int taskId, int priorityId, int statusId) {
+    public SubTaskDTO(int id, String name, String description, int taskId, int priorityId, int statusId) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.timeSpent = timeSpent;
         this.taskId = taskId;
         this.priorityId = priorityId;
         this.statusId = statusId;
@@ -48,13 +46,6 @@ public class SubTaskDTO implements Serializable {
         this.description = description;
     }
 
-    public int getTimeSpent() {
-        return timeSpent;
-    }
-
-    public void setTimeSpent(int timeSpent) {
-        this.timeSpent = timeSpent;
-    }
 
     public int getTaskId() {
         return taskId;
