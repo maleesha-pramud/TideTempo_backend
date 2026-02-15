@@ -124,10 +124,7 @@ public class TaskService {
                         JsonObject subTaskObject = new JsonObject();
                         subTaskObject.addProperty("id", subTask.getId());
                         subTaskObject.addProperty("name", subTask.getName());
-                        subTaskObject.addProperty("description", subTask.getDescription());
                         subTaskObject.addProperty("taskId", subTask.getTask().getId());
-                        subTaskObject.addProperty("priorityId", subTask.getPriority().getId());
-                        subTaskObject.addProperty("priorityName", subTask.getPriority().getValue());
                         subTaskObject.addProperty("statusId", subTask.getStatus().getId());
                         subTaskObject.addProperty("statusName", subTask.getStatus().getValue());
                         subTasksArray.add(subTaskObject);
@@ -192,10 +189,7 @@ public class TaskService {
                             JsonObject subTaskObject = new JsonObject();
                             subTaskObject.addProperty("id", subTask.getId());
                             subTaskObject.addProperty("name", subTask.getName());
-                            subTaskObject.addProperty("description", subTask.getDescription());
                             subTaskObject.addProperty("taskId", subTask.getTask().getId());
-                            subTaskObject.addProperty("priorityId", subTask.getPriority().getId());
-                            subTaskObject.addProperty("priorityName", subTask.getPriority().getValue());
                             subTaskObject.addProperty("statusId", subTask.getStatus().getId());
                             subTaskObject.addProperty("statusName", subTask.getStatus().getValue());
                             subTasksArray.add(subTaskObject);

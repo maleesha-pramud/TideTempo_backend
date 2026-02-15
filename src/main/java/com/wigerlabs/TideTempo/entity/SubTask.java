@@ -11,12 +11,6 @@ public class SubTask extends BaseEntity {
     @Column(nullable = false, length = 255, unique = true)
     private String name;
 
-    @Column(nullable = true, length = 500)
-    private String description;
-
-    @JoinColumn(name = "priority_id", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Priority priority;
 
     @JoinColumn(name = "task_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
@@ -29,11 +23,9 @@ public class SubTask extends BaseEntity {
     public SubTask() {
     }
 
-    public SubTask(int id, String name, String description, Priority priority, Task task, Status status) {
+    public SubTask(int id, String name, Task task, Status status) {
         this.id = id;
         this.name = name;
-        this.description = description;
-        this.priority = priority;
         this.task = task;
         this.status = status;
     }
@@ -54,22 +46,6 @@ public class SubTask extends BaseEntity {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-
-    public Priority getPriority() {
-        return priority;
-    }
-
-    public void setPriority(Priority priority) {
-        this.priority = priority;
-    }
 
     public Task getTask() {
         return task;

@@ -3,7 +3,6 @@ package com.wigerlabs.TideTempo.service;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.wigerlabs.TideTempo.dto.SubTaskDTO;
-import com.wigerlabs.TideTempo.entity.Priority;
 import com.wigerlabs.TideTempo.entity.Status;
 import com.wigerlabs.TideTempo.entity.SubTask;
 import com.wigerlabs.TideTempo.entity.Task;
@@ -29,8 +28,6 @@ public class SubTaskService {
             message = "Subtask name is required.";
         } else if (subTaskDTO.getTaskId() <= 0) {
             message = "Task ID is required.";
-        } else if (subTaskDTO.getPriorityId() <= 0) {
-            message = "Priority is required.";
         } else if (subTaskDTO.getStatusId() <= 0) {
             message = "Status is required.";
         } else {
@@ -52,19 +49,14 @@ public class SubTaskService {
                         } else if (task.getUser().getId() != loggedInUser.getId()) {
                             message = "You are not authorized to add subtask to this task.";
                         } else {
-                            Priority priority = hibernateSession.get(Priority.class, subTaskDTO.getPriorityId());
                             Status subTaskStatus = hibernateSession.get(Status.class, subTaskDTO.getStatusId());
 
-                            if (priority == null) {
-                                message = "Invalid priority.";
-                            } else if (subTaskStatus == null) {
+                            if (subTaskStatus == null) {
                                 message = "Invalid status.";
                             } else {
                                 SubTask newSubTask = new SubTask();
                                 newSubTask.setName(subTaskDTO.getName());
-                                newSubTask.setDescription(subTaskDTO.getDescription());
                                 newSubTask.setTask(task);
-                                newSubTask.setPriority(priority);
                                 newSubTask.setStatus(subTaskStatus);
 
                                 Transaction transaction = hibernateSession.beginTransaction();
@@ -115,10 +107,7 @@ public class SubTaskService {
                     JsonObject subTaskObject = new JsonObject();
                     subTaskObject.addProperty("id", subTask.getId());
                     subTaskObject.addProperty("name", subTask.getName());
-                    subTaskObject.addProperty("description", subTask.getDescription());
                     subTaskObject.addProperty("taskId", subTask.getTask().getId());
-                    subTaskObject.addProperty("priorityId", subTask.getPriority().getId());
-                    subTaskObject.addProperty("priorityName", subTask.getPriority().getValue());
                     subTaskObject.addProperty("statusId", subTask.getStatus().getId());
                     subTaskObject.addProperty("statusName", subTask.getStatus().getValue());
                     dataArray.add(subTaskObject);
@@ -161,9 +150,7 @@ public class SubTaskService {
                         SubTaskDTO subTaskDTO = new SubTaskDTO(
                                 subTask.getId(),
                                 subTask.getName(),
-                                subTask.getDescription(),
                                 subTask.getTask().getId(),
-                                subTask.getPriority().getId(),
                                 subTask.getStatus().getId()
                         );
                         dataObject.add("subtask", AppUtil.GSON.toJsonTree(subTaskDTO));
@@ -211,9 +198,7 @@ public class SubTaskService {
                             SubTaskDTO subTaskDTO = new SubTaskDTO(
                                     subTask.getId(),
                                     subTask.getName(),
-                                    subTask.getDescription(),
                                     subTask.getTask().getId(),
-                                    subTask.getPriority().getId(),
                                     subTask.getStatus().getId()
                             );
                             dataArray.add(AppUtil.GSON.toJsonTree(subTaskDTO));
@@ -247,8 +232,6 @@ public class SubTaskService {
             message = "Subtask name is required.";
         } else if (subTaskDTO.getTaskId() <= 0) {
             message = "Task ID is required.";
-        } else if (subTaskDTO.getPriorityId() <= 0) {
-            message = "Priority is required.";
         } else if (subTaskDTO.getStatusId() <= 0) {
             message = "Status is required.";
         } else {
@@ -277,20 +260,15 @@ public class SubTaskService {
                             } else if (task.getUser().getId() != loggedInUser.getId()) {
                                 message = "You are not authorized to assign subtask to this task.";
                             } else {
-                                Priority priority = hibernateSession.get(Priority.class, subTaskDTO.getPriorityId());
                                 Status subTaskStatus = hibernateSession.get(Status.class, subTaskDTO.getStatusId());
 
-                                if (priority == null) {
-                                    message = "Invalid priority.";
-                                } else if (subTaskStatus == null) {
+                                if (subTaskStatus == null) {
                                     message = "Invalid status.";
                                 } else {
                                     Transaction transaction = hibernateSession.beginTransaction();
                                     try {
                                         existingSubTask.setName(subTaskDTO.getName());
-                                        existingSubTask.setDescription(subTaskDTO.getDescription());
                                         existingSubTask.setTask(task);
-                                        existingSubTask.setPriority(priority);
                                         existingSubTask.setStatus(subTaskStatus);
 
                                         hibernateSession.merge(existingSubTask);
